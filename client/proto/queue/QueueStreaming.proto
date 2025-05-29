@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package queue;
+
+service QueueStreaming{
+    rpc QueuePush(stream NumberRequest) returns (stream MessageResponce);
+    rpc QueuePop(stream EmptyRequest) returns (stream QueueStringResponce);
+}
+
+
+message NumberRequest{
+    int64 value = 1;
+}
+
+message MessageResponce{
+    string message = 1;
+}
+
+message EmptyRequest{
+
+}
+
+message QueueStringResponce{
+    string message = 1;
+}
+
+
