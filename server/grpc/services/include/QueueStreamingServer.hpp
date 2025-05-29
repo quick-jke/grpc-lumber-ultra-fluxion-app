@@ -14,9 +14,9 @@
 #include <sstream>
 
 
-class QueueStreamingImpl final : public queue::QueueStreaming::Service {
+class QueueStreamingServer final : public queue::QueueStreaming::Service {
 public:
-    QueueStreamingImpl();
+    QueueStreamingServer();
     grpc::Status QueuePush(grpc::ServerContext* context, grpc::ServerReaderWriter<queue::MessageResponce, queue::NumberRequest>* stream) override;
     grpc::Status QueuePop(grpc::ServerContext* context, ::grpc::ServerReaderWriter<queue::QueueStringResponce, queue::EmptyRequest>* stream) override;
 

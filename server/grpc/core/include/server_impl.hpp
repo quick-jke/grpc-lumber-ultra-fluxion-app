@@ -2,7 +2,7 @@
 #define SERVER_IMPL_HPP
 
 #include <iostream>
-#include "QueueStreaming.hpp"
+#include "QueueStreamingServer.hpp"
 
 class ServerImpl{
 public:

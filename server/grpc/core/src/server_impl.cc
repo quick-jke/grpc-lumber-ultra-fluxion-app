@@ -8,7 +8,7 @@ void ServerImpl::run(const int& port){
     std::cout << "Starting server..." << std::endl;
     std::string server_address("0.0.0.0:" + std::to_string(port));
 
-    QueueStreamingImpl service;
+    QueueStreamingServer service;
 
     grpc::EnableDefaultHealthCheckService(true);
     grpc::ServerBuilder builder;

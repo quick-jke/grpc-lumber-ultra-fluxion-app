@@ -1,6 +1,6 @@
-#include "QueueStreaming.hpp"
+#include "QueueStreamingServer.hpp"
 std::mutex write_mutex_;
-QueueStreamingImpl::QueueStreamingImpl(){
+QueueStreamingServer::QueueStreamingServer(){
     pool_ = std::make_unique<ThreadPool>(std::thread::hardware_concurrency());
 }
 
@@ -20,7 +20,7 @@ std::string queueToString(std::queue<int> q) {
     return oss.str();
 }
 
-grpc::Status QueueStreamingImpl::QueuePush(grpc::ServerContext* context, grpc::ServerReaderWriter<queue::MessageResponce, queue::NumberRequest>* stream){
+grpc::Status QueueStreamingServer::QueuePush(grpc::ServerContext* context, grpc::ServerReaderWriter<queue::MessageResponce, queue::NumberRequest>* stream){
 
     std::cout << "Streaming QueuePush opened" << std::endl << std::endl;
 
@@ -58,7 +58,7 @@ grpc::Status QueueStreamingImpl::QueuePush(grpc::ServerContext* context, grpc::S
 
 }
 
-grpc::Status QueueStreamingImpl::QueuePop(grpc::ServerContext* context, ::grpc::ServerReaderWriter<queue::QueueStringResponce, queue::EmptyRequest>* stream){
+grpc::Status QueueStreamingServer::QueuePop(grpc::ServerContext* context, ::grpc::ServerReaderWriter<queue::QueueStringResponce, queue::EmptyRequest>* stream){
     std::cout << "Streaming QueuePop opened" << std::endl << std::endl;
 
     queue::EmptyRequest request;
